@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Les promesses en ECMAScript 2015, ce qu'il faut savoir
+commentsIssueID: 1
 ---
 
 # Les promesses en ECMAScript 2015, ce qu'il faut savoir

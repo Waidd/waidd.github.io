@@ -5,6 +5,7 @@ layout: default
 {{ content }}
 </div>
 
+{% if site.related_posts.length %}
 <div id="related">
   <h2>Related Posts</h2>
   <ul class="posts">
@@ -13,3 +14,13 @@ layout: default
     {% endfor %}
   </ul>
 </div>
+{% endif %}
+
+{% if page.commentsIssueID %}
+<div id="comments">
+  <h2>Commentaires</h2>
+  <div id="header">
+    Vous pouvez laisser un commentaire sur <a href="{{site.githubRepository}}/issues/{{page.commentsIssueID}}">GitHub</a> (connexion nécessaire).
+  </div>
+</div>
+{% endif %}
