@@ -22,12 +22,28 @@ body {
   text-align: center;
 }
 
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
+  margin-bottom: .5rem;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #313131;
+  text-rendering: optimizeLegibility;
 }
-
 h1 {
-  margin-bottom: 1em;
+  font-size: 1.6rem;
+}
+h2 {
+  margin-top: 1.4rem;
+  font-size: 1.4rem;
+}
+h3 {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+}
+h4, h5, h6 {
+  margin-top: 1rem;
+  font-size: 1rem;
 }
 
 p {
@@ -154,27 +170,70 @@ ul.posts {
 
   /* standard */
 
-  #post pre {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    padding: 0 .4em;
-  }
-
   #post ul,
   #post ol {
     margin-left: 1.35em;
   }
 
+  /* Code */
+  #post code, #post pre {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+  }
   #post code {
-    border: 1px solid #ddd;
-    background-color: #eef;
+    padding: .25em .5em;
     font-size: 85%;
-    padding: 0 .2em;
+    color: #bf616a;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+  }
+  #post pre {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: .8rem;
+    line-height: 1.4;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f9f9f9;
+  }
+  #post pre code {
+    padding: 0;
+    font-size: 100%;
+    color: inherit;
+    background-color: transparent;
   }
 
-    #post pre code {
-      border: none;
+  /* Quotes */
+  #post blockquote {
+    padding: .5rem 1rem;
+    margin: .8rem 0;
+    color: #7a7a7a;
+    border-left: .25rem solid #e5e5e5;
+  }
+  #post blockquote p:first-child {
+    margin-top: 0;
+  }
+  #post blockquote p:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 30em) {
+    #post blockquote {
+      padding-right: 5rem;
+      padding-left: 1.25rem;
     }
+  }
+
+  /* Pygments via Jekyll */
+  #post .highlight {
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+  #post .highlight pre {
+    margin-bottom: 0;
+  }
 
   /* terminal */
 
