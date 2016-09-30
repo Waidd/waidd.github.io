@@ -196,17 +196,17 @@ ul.posts {
   }
 
   /* Code */
-  #post code, #post pre {
+  #post code, #post pre, #comments code, #comments pre {
     font-family: Menlo, Monaco, "Courier New", monospace;
   }
-  #post code {
+  #post code, #comments code {
     padding: .25em .5em;
     font-size: 85%;
     color: #bf616a;
     background-color: #f9f9f9;
     border-radius: 3px;
   }
-  #post pre {
+  #post pre, #comments pre {
     display: block;
     margin-top: 0;
     margin-bottom: 1rem;
@@ -219,7 +219,7 @@ ul.posts {
     word-wrap: break-word;
     background-color: #f9f9f9;
   }
-  #post pre code {
+  #post pre code, #comments pre code {
     padding: 0;
     font-size: 100%;
     color: inherit;
@@ -227,43 +227,43 @@ ul.posts {
   }
 
   /* Quotes */
-  #post blockquote {
+  #post blockquote, #comments blockquote {
     padding: .5rem 1rem;
     margin: .8rem 0;
     color: #7a7a7a;
     border-left: .25rem solid #e5e5e5;
   }
-  #post blockquote p:first-child {
+  #post blockquote p:first-child, #comments blockquote p:first-child {
     margin-top: 0;
   }
-  #post blockquote p:last-child {
+  #post blockquote p:last-child, #comments blockquote p:last-child {
     margin-bottom: 0;
   }
   @media (min-width: 30em) {
-    #post blockquote {
+    #post blockquote, #comments blockquote {
       padding-right: 5rem;
       padding-left: 1.25rem;
     }
   }
 
   /* Pygments via Jekyll */
-  #post .highlight {
+  #post .highlight, #comments .highlight {
     margin-bottom: 1rem;
     border-radius: 4px;
   }
-  #post .highlight pre {
+  #post .highlight pre, #comments .highlight pre {
     margin-bottom: 0;
   }
 
   /* terminal */
 
-  #post pre.terminal {
+  #post pre.terminal, #comments pre.terminal {
     border: 1px solid black;
     background-color: #333;
     color: white;
   }
 
-  #post pre.terminal code {
+  #post pre.terminal code, #comments pre.terminal code {
     background-color: #333;
   }
 
@@ -274,3 +274,139 @@ ul.posts {
   #related h2 {
     margin-bottom: 1em;
   }
+  
+/* comments */
+
+.timeline-comment-wrapper>.timeline-comment::after,.timeline-comment-wrapper>.timeline-comment::before {
+    position: absolute;
+    top: 11px;
+    right: 100%;
+    left: -16px;
+    display: block;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset
+}
+
+.timeline-comment-wrapper>.timeline-comment::after {
+    margin-top: 1px;
+    margin-left: 2px;
+    border-width: 7px;
+    border-right-color: #f7f7f7
+}
+
+.timeline-comment-wrapper>.timeline-comment::before {
+    border-width: 8px;
+    border-right-color: #ddd
+}
+
+.timeline-comment-wrapper {
+    position: relative;
+    padding-left: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff
+}
+
+.timeline-comment-avatar {
+    float: left;
+    margin-left: -60px;
+    border-radius: 3px
+}
+
+.timeline-comment {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px
+}
+
+.timeline-comment .comment+.comment {
+    border-top: 1px solid #e5e5e5
+}
+
+.timeline-comment .comment+.comment::before,.timeline-comment .comment+.comment::after {
+    display: none
+}
+
+.timeline-comment .comment+.comment .timeline-comment-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0
+}
+
+.timeline-comment-header {
+    padding-right: 15px;
+    padding-left: 15px;
+    color: #767676;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.timeline-comment-header:only-child {
+    border-bottom: 0;
+    border-radius: 3px
+}
+
+.timeline-comment-header .author {
+    color: #555
+}
+
+.timeline-comment-header .timestamp {
+    color: inherit;
+    white-space: nowrap
+}
+
+.timeline-comment-header-text {
+    max-width: 78%;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.timeline-comment-header-avatar {
+    float: left;
+    margin-top: 10px;
+    margin-right: 5px
+}
+
+.comment-body {
+    width: 100%;
+    padding: 15px;
+    overflow: visible;
+    font-size: 14px;
+}
+
+.comment-body .highlight {
+    overflow: visible !important;
+    background-color: transparent
+}
+
+.comment-body>*:last-child {
+    margin-bottom: 0 !important;
+}
+.comment-body>*:first-child {
+    margin-top: 0 !important;
+}
+
+#comment-post {
+  border-top: 2px solid #f3f3f3;
+}
+
+#comment-post .comment-body {
+  width: auto;
+  padding: 5px;
+}
+
+#comment-post .comment-body a div {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  background-color: #fafafa;
+}

@@ -1,5 +1,6 @@
 # site
-githubRepository: https://github.com/Waidd/waidd.github.io
+gitHubUsername: Waidd
+gitHubRepositoryName: waidd.github.io
 
 # build
 markdown: kramdown

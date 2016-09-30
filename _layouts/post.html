@@ -19,8 +19,86 @@ layout: default
 {% if page.commentsIssueID %}
 <div id="comments">
   <h2>Commentaires</h2>
-  <div id="header">
-    Vous pouvez laisser un commentaire sur <a href="{{site.githubRepository}}/issues/{{page.commentsIssueID}}">GitHub</a> (connexion nécessaire).
+  <div id="comments-list"></div>
+  <div id="comment-post">
+    <div class="timeline-comment-wrapper">
+      <img class="timeline-comment-avatar" height="44" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" width="44">
+      <div class="timeline-comment">
+        <div class="timeline-comment-header"><div class="timeline-comment-header-text">&nbsp;</div></div>
+        <div class="comment-body">
+          <a href="https://github.com/{{site.gitHubUsername}}/{{site.gitHubRepositoryName}}/issues/{{page.commentsIssueID}}">
+            <div>Vous pouvez laisser un commentaire sur GitHub (connexion nécessaire).</br></div>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endif %}
+
+<script>
+function twoDigit(number) {
+  return ('0' + number).slice(-2);
+}
+
+function formatDate(jsonDate) {
+  var date = new Date(jsonDate);
+  var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+  var dateShort = 'le ' + date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+  var dateFull = dateShort + ' à ' + twoDigit(date.getHours()) + ':' + twoDigit(date.getMinutes());
+
+  var ago = (new Date() - date) / 1000;
+  if (ago < 86400) {
+    var hours = ~~(ago / 3600);
+    ago %= 3600;
+    var minutes = ~~(ago / 60);
+    ago %= 60;
+    var seconds = ~~(ago);
+
+    dateShort = 'il y a ';
+    if (hours) { dateShort += hours + ' heure' + (hours > 1 ? 's' : ''); }
+    else if (minutes) { dateShort += minutes + ' minute' + (minutes > 1 ? 's' : ''); }
+    else { dateShort += seconds + ' seconde' + (seconds > 1 ? 's' : ''); }
+  }
+
+  return {
+    short: dateShort,
+    full: dateFull
+  };
+}
+
+function renderComments(comments) {
+  var commentsDiv = document.getElementById('comments-list');
+  comments.forEach(function (comment) {
+    var date = formatDate(comment.created_at);
+
+    commentsDiv.innerHTML +=
+      '<div class="timeline-comment-wrapper">' +
+        '<a href="' + comment.user.html_url + '"><img class="timeline-comment-avatar" height="44" src="' + comment.user.avatar_url + '" width="44"></a>' +
+        '<div class="timeline-comment">' +
+          '<div class="timeline-comment-header">' +
+            '<div class="timeline-comment-header-text">' +
+              '<strong><a href="' + comment.user.html_url + '" class="author">' + comment.user.login + '</a></strong> a commenté ' +
+              '<a href="' + comment.html_url + '" class="timestamp">' +
+                '<relative-time datetime="' + comment.created_at + '" title="' + date.full + '">' + date.short + '</relative-time>' +
+              '</a>' +
+            '</div>' +
+          '</div>' +
+          '<div class="comment-body">' + comment.body_html + '</div>' +
+        '</div>' +
+      '</div>';
+  });
+}
+function fetchComments(username, repositoryName, issueID) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState !== 4 || request.status !== 200) { return; }
+    renderComments(JSON.parse(request.responseText));
+  };
+  request.open('GET', 'https://api.github.com/repos/' + username + '/' + repositoryName + '/issues/' + issueID + '/comments');
+  request.setRequestHeader('Accept', 'application/vnd.github.v3.html+json');
+  request.send();
+}
+
+fetchComments('{{site.gitHubUsername}}', '{{site.gitHubRepositoryName}}', '{{page.commentsIssueID}}');
+</script>
