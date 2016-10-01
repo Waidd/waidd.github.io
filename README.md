@@ -2,6 +2,14 @@
 
 It is automatically transformed by "Jekyll":http://github.com/mojombo/jekyll into a static site whenever I push this repository to GitHub.
 
+## TODO
+
+* ~~GitHub issues as comment system.~~
+* Social networks as icons.
+* Global CSS improvements.
+* More configurations options.
+* Responsive.
+
 ## License
 
 The following directories and their contents are Copyright Thomas Cholley. You may not reuse anything therein without my permission:
