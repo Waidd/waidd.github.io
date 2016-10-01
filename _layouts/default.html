@@ -10,6 +10,9 @@
 
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+   
+   <!-- FontAwesome -->
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" />
 </head>
 <body>
 
@@ -22,18 +25,13 @@
   {{ content }}
 
   <div class="footer">
-    <div class="contact">
-      <p>
-        Thomas Cholley
-        <br />
-        cholley.t@gmail.com
-      </p>
-    </div>
-    <div class="contact">
-      <p>
-        <a href="http://github.com/Waidd/">github.com/Waidd</a><br />
-      </p>
-    </div>
+    <ul class="social-icons">
+      {% if site.socialLinkedin %}<li> <a href="https://www.linkedin.com/in/{{ site.socialLinkedin }}"><i class="fa fa-linkedin"></i></a></li>{% endif %} 
+      {% if site.socialPinterest %}<li> <a href="https://fr.pinterest.com/{{ site.socialPinterest }}"><i class="fa fa-pinterest"></i></a></li>{% endif %}
+      {% if site.socialGitHub %}<li> <a href="https://github.com/{{ site.socialGitHub }}"><i class="fa fa-github"></i></a></li>{% endif %} 
+      {% if site.socialTwitter %}<li> <a href="https://twitter.com/{{ site.socialTwitter }}"><i class="fa fa-twitter"></i></a></li>{% endif %} 
+      {% if site.socialMail %}<li> <a href="mailto:{{ site.socialMail }}"><i class="fa fa-envelope"></i></a></li>{% endif %} 
+  	</ul>
   </div>
 </div>
 

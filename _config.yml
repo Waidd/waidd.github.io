@@ -1,6 +1,15 @@
 # site
+
+# used for issue github comment's system
 gitHubUsername: Waidd
 gitHubRepositoryName: waidd.github.io
+
+# social links, you can easily add new one in _layouts/default.html
+socialLinkedin: thomascholley
+socialPinterest:
+socialTwitter: W4idd
+socialGitHub: Waidd
+socialMail: cholley.t at gmail.com
 
 # build
 markdown: kramdown

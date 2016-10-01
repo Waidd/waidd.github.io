@@ -5,7 +5,7 @@ It is automatically transformed by "Jekyll":http://github.com/mojombo/jekyll int
 ## TODO
 
 * ~~GitHub issues as comment system.~~
-* Social networks as icons.
+* ~~Social networks as icons.~~
 * Global CSS improvements.
 * More configurations options.
 * Responsive.
