@@ -11,6 +11,10 @@ socialTwitter: W4idd
 socialGitHub: Waidd
 socialMail: cholley.t at gmail.com
 
+# piwik
+piwikURL: log.freshand.green
+piwikID: 1
+
 # build
 markdown: kramdown
 highlighter: rouge
