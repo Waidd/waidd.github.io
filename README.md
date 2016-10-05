@@ -8,7 +8,7 @@ It is automatically transformed by "Jekyll":http://github.com/mojombo/jekyll int
 * ~~Social networks as icons.~~ DONE
 * ~~Tags~~ DONE
 * ~~Piwik support~~ DONE
-* RSS
+* ~~RSS~~ DONE
 * Global CSS improvements.
 * More configurations options.
 * Responsive.

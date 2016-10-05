@@ -457,6 +457,7 @@ ul.posts {
 	transform: scale(1.1); 
 }
  
+.social-icons .fa-rss {background-color:#F56505;}
 .social-icons .fa-bitbucket {background-color:#003366;} 
 .social-icons .fa-facebook {background-color:#3C599F;}  
 .social-icons .fa-flickr {background-color:#FF0084;}
