@@ -4,8 +4,11 @@ It is automatically transformed by "Jekyll":http://github.com/mojombo/jekyll int
 
 ## TODO
 
-* ~~GitHub issues as comment system.~~
-* ~~Social networks as icons.~~
+* ~~GitHub issues as comment system.~~ DONE
+* ~~Social networks as icons.~~ DONE
+* ~~Tags~~ DONE
+* ~~Piwik support~~ DONE
+* RSS
 * Global CSS improvements.
 * More configurations options.
 * Responsive.
