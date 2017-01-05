@@ -6,6 +6,7 @@ layout: default
   {% for tag in page.tags %}
     <a class="tag" href="/tags/{{ tag }}.html">{{ tag }}</a>
   {% endfor %}
+  <span id="reactions"></span>
 </div>
 
 <div id="post">
@@ -111,5 +112,56 @@ function fetchComments (username, repositoryName, issueID) {
   request.send();
 }
 
+function renderReactions (reactions) {
+  var reactionsDiv = document.getElementById('reactions');
+
+  var gemoji = {
+    '+1': '👍',
+    '-1': '👎',
+    laugh: '😄',
+    confused: '😕',
+    heart: '❤️',
+    hooray: '🎉'
+  };
+
+  Object.keys(reactions).forEach(function (alias) {
+    if (!reactions[alias]) { return; }
+
+    reactionsDiv.innerHTML +=
+      '<span class="reaction">' +
+        '<g-emoji ios-version="6.0">' + gemoji[alias] + '</g-emoji>' +
+        reactions[alias] +
+      '</span>';
+  });
+}
+
+function parseReactions (rawReactions) {
+  var reactions = {
+    '+1': 0,
+    '-1': 0,
+    laugh: 0,
+    confused: 0,
+    heart: 0,
+    hooray: 0
+  };
+
+  rawReactions.forEach(function (reaction) { typeof reactions[reaction.content] !== 'undefined' && reactions[reaction.content]++; });
+  renderReactions(reactions);
+}
+
+function fetchReactions (username, repositoryName, issueID) {
+  var request = new window.XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState !== 4 || request.status !== 200) { return; }
+    parseReactions(JSON.parse(request.responseText));
+  };
+  request.open('GET', 'https://api.github.com/repos/' + username + '/' + repositoryName + '/issues/' + issueID + '/reactions');
+  // @WARN this header will change regarding of the evolution of the github API
+  request.setRequestHeader('Accept', 'application/vnd.github.squirrel-girl-preview.html+json');
+  request.send();
+}
+
 fetchComments('{{site.gitHubUsername}}', '{{site.gitHubRepositoryName}}', '{{page.commentsIssueID}}');
+fetchReactions('{{site.gitHubUsername}}', '{{site.gitHubRepositoryName}}', '{{page.commentsIssueID}}');
+
 </script>

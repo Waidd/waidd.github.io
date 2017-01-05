@@ -274,7 +274,13 @@ ul.posts {
   #related h2 {
     margin-bottom: 1em;
   }
-  
+
+/* reactions */
+
+#reactions .reaction {
+  padding: 5px;
+}
+
 /* comments */
 
 .timeline-comment-wrapper>.timeline-comment::after,.timeline-comment-wrapper>.timeline-comment::before {
