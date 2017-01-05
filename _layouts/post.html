@@ -44,11 +44,11 @@ layout: default
 {% endif %}
 
 <script>
-function twoDigit(number) {
+function twoDigit (number) {
   return ('0' + number).slice(-2);
 }
 
-function formatDate(jsonDate) {
+function formatDate (jsonDate) {
   var date = new Date(jsonDate);
   var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
   var dateShort = 'le ' + date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
@@ -63,9 +63,13 @@ function formatDate(jsonDate) {
     var seconds = ~~(ago);
 
     dateShort = 'il y a ';
-    if (hours) { dateShort += hours + ' heure' + (hours > 1 ? 's' : ''); }
-    else if (minutes) { dateShort += minutes + ' minute' + (minutes > 1 ? 's' : ''); }
-    else { dateShort += seconds + ' seconde' + (seconds > 1 ? 's' : ''); }
+    if (hours) {
+      dateShort += hours + ' heure' + (hours > 1 ? 's' : '');
+    } else if (minutes) {
+      dateShort += minutes + ' minute' + (minutes > 1 ? 's' : '');
+    } else {
+      dateShort += seconds + ' seconde' + (seconds > 1 ? 's' : '');
+    }
   }
 
   return {
@@ -74,7 +78,7 @@ function formatDate(jsonDate) {
   };
 }
 
-function renderComments(comments) {
+function renderComments (comments) {
   var commentsDiv = document.getElementById('comments-list');
   comments.forEach(function (comment) {
     var date = formatDate(comment.created_at);
@@ -96,8 +100,8 @@ function renderComments(comments) {
       '</div>';
   });
 }
-function fetchComments(username, repositoryName, issueID) {
-  var request = new XMLHttpRequest();
+function fetchComments (username, repositoryName, issueID) {
+  var request = new window.XMLHttpRequest();
   request.onreadystatechange = function () {
     if (request.readyState !== 4 || request.status !== 200) { return; }
     renderComments(JSON.parse(request.responseText));
